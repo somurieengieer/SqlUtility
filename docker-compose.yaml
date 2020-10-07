@@ -1,0 +1,16 @@
+version: "3"
+services:
+  mysql-db:
+    build:
+      context: .
+      dockerfile: Dockerfile-compose
+    container_name: mysql8_container_compose
+    volumes:
+      - ./tmp_db_init_football:/docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_DATABASE=TEST
+      - MYSQL_USER=usr
+      - MYSQL_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=password
+    ports:
+      - "43306:3306"
